@@ -1,26 +1,237 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
+/* Dark mode follows [data-theme="dark"] on <html> (set by the theme script / toggle). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------------
+   Tokens — "Nature" palette: warm parchment, bark-brown ink, leaf green.
+   Layout from ximitech.vn. Component class names (paper, ink, brand,
+   band…) are kept so every section re-skins from here.
+------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --paper: #f8f5f0;          /* parchment */
+  --surface: #fcfaf6;        /* cards, a touch lighter than the page */
+  --ink: #3e2723;            /* bark brown */
+  --ink-muted: #6d4c41;
+  --line: #e0d6c9;
+  --brand: #2e7d32;          /* leaf green */
+  --brand-soft: #e8f5e9;     /* secondary / selected */
+  --chip: #f0e8dc;           /* muted */
+  --lavender: #c8e6c9;       /* (name kept) soft green accent */
+  --lavender-2: #a5d6a7;
+  --accent: #2e7d32;
+  --accent-ink: #ffffff;
+  --focus: #2e7d32;
+  --success: #2e7d32;
+  --danger: #c62828;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* deep forest band (hero, review, footer) */
+  --band: #1c2a1f;
+  --band-ink: #f0ebe5;
+  --band-muted: #d7cfc4;
+  --band-line: rgb(240 235 229 / 0.12);
+  --band-card: rgb(45 58 46 / 0.88);
+  --band-badge: #3e4a3d;
+
+  --grad-a: linear-gradient(90deg, #2e7d32, #558b2f);
+  --grad-b: linear-gradient(90deg, #2e7d32, #689f38);
+  --grad-band: linear-gradient(90deg, #81c784, #c5e1a5);
+
+  /* shadcn bridge */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--brand);
+  --primary-foreground: #ffffff;
+  --secondary: var(--brand-soft);
+  --secondary-foreground: #1b5e20;
+  --muted: var(--chip);
+  --muted-foreground: var(--ink-muted);
+  --accent-foreground: var(--accent-ink);
+  --destructive: var(--danger);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--focus);
+  --radius: 0.75rem;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    --paper: #1c2a1f;
+    --surface: #2d3a2e;
+    --ink: #f0ebe5;
+    --ink-muted: #d7cfc4;
+    --line: #3e4a3d;
+    --brand: #4caf50;
+    --brand-soft: #2d3a2e;
+    --chip: #3e4a3d;
+    --accent: #4caf50;
+    --accent-ink: #10200f;
+    --focus: #81c784;
+    --band: #141f16;
+    --primary-foreground: #10200f;
+    --secondary-foreground: #d7e8d0;
+    --grad-a: linear-gradient(90deg, #4caf50, #8bc34a);
+    --grad-b: linear-gradient(90deg, #81c784, #c5e1a5);
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #1c2a1f;
+  --surface: #2d3a2e;
+  --ink: #f0ebe5;
+  --ink-muted: #d7cfc4;
+  --line: #3e4a3d;
+  --brand: #4caf50;
+  --brand-soft: #2d3a2e;
+  --chip: #3e4a3d;
+  --accent: #4caf50;
+  --accent-ink: #10200f;
+  --focus: #81c784;
+  --band: #141f16;
+  --primary-foreground: #10200f;
+  --secondary-foreground: #d7e8d0;
+  --grad-a: linear-gradient(90deg, #4caf50, #8bc34a);
+  --grad-b: linear-gradient(90deg, #81c784, #c5e1a5);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-focus: var(--focus);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-band: var(--band);
+  --color-band-ink: var(--band-ink);
+  --color-band-muted: var(--band-muted);
+  --color-band-line: var(--band-line);
+  --color-band-card: var(--band-card);
+  --color-band-badge: var(--band-badge);
+  --color-chip: var(--chip);
+  --color-lavender: var(--lavender);
+  --color-lavender-2: var(--lavender-2);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-sans-src);
+  --font-display: var(--font-sans-src);
+  --font-mono: var(--font-code);
+  --font-heading: var(--font-display);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 12px;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply font-sans;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklab, var(--ink-muted) 50%, transparent) transparent;
+  }
+  body {
+    @apply bg-paper text-ink;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--brand-soft);
+    color: var(--ink);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Display type: Plus Jakarta Sans, medium weight, tight */
+.display {
+  font-family: var(--font-sans-src), sans-serif;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+/* Leaf-green gradient text (second line of headings) */
+.text-grad {
+  background-image: var(--grad-b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 0.08em; /* keeps descenders and dấu inside the clip */
+}
+
+/* 1px green ring around a solid button */
+.ring-grad {
+  background: var(--grad-a) border-box;
+  border: 1px solid transparent;
+}
+
+/* Faint drafting grid behind hero and story (a frontend workbench, not a blob) */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--line) 70%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--line) 70%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Soft canopy glow rising from the bottom of a dark band */
+.band-glow {
+  background:
+    radial-gradient(60% 55% at 50% 100%, rgb(76 175 80 / 0.32), transparent 70%),
+    radial-gradient(35% 45% at 12% 85%, rgb(46 125 50 / 0.4), transparent 70%),
+    radial-gradient(35% 45% at 88% 85%, rgb(141 110 99 / 0.3), transparent 70%);
+}
+
+/* gradient text sitting on a dark band uses the lighter leaf tones */
+.bg-band .text-grad {
+  background-image: var(--grad-band);
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--lavender-2);
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
