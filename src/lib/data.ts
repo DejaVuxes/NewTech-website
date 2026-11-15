@@ -1,29 +1,105 @@
 export type ShotKind = "landing" | "dashboard" | "shop" | "crm" | "saas" | "blog" | "kit" | "edu" | "booking";
 
+export type TemplateCategory = "commerce" | "booking" | "edu";
+
 export type Template = {
   slug: string;
   name: string;
   seller: string;
-  category: "landing" | "dashboard" | "kit" | "pages";
+  category: TemplateCategory;
   stack: string[];
   price: number;
-  kind: ShotKind;
-  altKind: ShotKind;
-  dark?: boolean;
-  headline: string;
+  /** 16:10 screenshot in /public; altShot is shown on hover */
+  shot: string;
+  altShot?: string;
+  /** live demo: internal route/static file, or an external prototype link */
+  demo: string;
+  external?: boolean;
+  demoLabel?: string;
+  summary: string;
   isNew?: boolean;
+  /** drawn fallback while a screenshot is missing */
+  kind: ShotKind;
+  headline: string;
 };
 
+/** Websites designed by NewTech Studio and offered for sale. */
 export const templates: Template[] = [
-  { slug: "sen-saas", name: "Sen — SaaS landing", seller: "NewTech Studio", category: "landing", stack: ["Next.js", "Tailwind"], price: 390000, kind: "saas", altKind: "landing", headline: "Quản lý ca làm cho chuỗi cửa hàng", isNew: true },
-  { slug: "dong-ho-admin", name: "Đồng Hồ — admin bán lẻ", seller: "NewTech Studio", category: "dashboard", stack: ["React", "shadcn/ui"], price: 590000, kind: "dashboard", altKind: "crm", dark: true, headline: "Doanh thu tuần này" },
-  { slug: "cho-phien", name: "Chợ Phiên — e-commerce", seller: "NewTech Studio", category: "pages", stack: ["Next.js", "Tailwind"], price: 490000, kind: "shop", altKind: "landing", headline: "Đặc sản ba miền, giao trong ngày" },
-  { slug: "la-tre-crm", name: "Lá Tre — CRM bán hàng", seller: "NewTech Studio", category: "dashboard", stack: ["Vue 3", "Tailwind"], price: 590000, kind: "crm", altKind: "dashboard", headline: "Khách hàng tiềm năng", isNew: true },
-  { slug: "but-chi", name: "Bút Chì — blog & tạp chí", seller: "NewTech Studio", category: "pages", stack: ["Next.js", "MDX"], price: 290000, kind: "blog", altKind: "landing", headline: "Ghi chép của một đội sản phẩm" },
-  { slug: "gom-ui-kit", name: "Gốm — UI kit 120 component", seller: "NewTech Studio", category: "kit", stack: ["React", "Figma"], price: 790000, kind: "kit", altKind: "saas", headline: "Gốm UI kit" },
-  { slug: "lop-hoc", name: "Lớp Học — nền tảng khoá học", seller: "NewTech Studio", category: "pages", stack: ["Next.js", "Tailwind"], price: 490000, kind: "edu", altKind: "dashboard", headline: "Luyện IELTS 6.5 trong 12 tuần" },
-  { slug: "hen-gio", name: "Hẹn Giờ — đặt lịch spa", seller: "NewTech Studio", category: "landing", stack: ["React", "Tailwind"], price: 350000, kind: "booking", altKind: "landing", dark: true, headline: "Đặt lịch chăm sóc da" },
-  { slug: "nen-tang", name: "Nền Tảng — startup landing", seller: "NewTech Studio", category: "landing", stack: ["Next.js", "Tailwind"], price: 390000, kind: "landing", altKind: "saas", headline: "Ra mắt sản phẩm trong một tuần" },
+  {
+    slug: "ticket4u",
+    name: "Ticket4U — web đặt vé xem phim",
+    seller: "NewTech Studio",
+    category: "booking",
+    stack: ["HTML/CSS", "Bootstrap", "jQuery"],
+    price: 490000,
+    shot: "/demos/thumbs/ve-phim.png",
+    altShot: "/demos/thumbs/ve-phim-2.png",
+    demo: "/demos/ve-phim/index.html",
+    summary: "Lịch chiếu, chọn suất, chọn ghế, thanh toán và vé điện tử. Có chế độ sáng và tối.",
+    kind: "booking",
+    headline: "Phim đang chiếu",
+  },
+  {
+    slug: "ielts-evaluator",
+    name: "IELTS Evaluator Pro — nền tảng khoá học IELTS",
+    seller: "NewTech Studio",
+    category: "edu",
+    stack: ["Figma", "Prototype"],
+    price: 590000,
+    shot: "/demos/thumbs/ielts.png",
+    altShot: "/demos/thumbs/ielts-2.png",
+    demo: "https://www.figma.com/proto/NeGUfcpGjZffniN6GyBwxb/IELTS-Evaluator-Pro---UI-UX-Prototype?node-id=278-271&t=Kvza7EK2LJBNGGBR-1&scaling=min-zoom&content-scaling=fixed&page-id=244%3A282&starting-point-node-id=278%3A271&show-proto-sidebar=1",
+    external: true,
+    demoLabel: "Xem prototype",
+    summary: "Khoá học, đề luyện 4 kỹ năng, chấm bài Writing, theo dõi band điểm. Bản thiết kế Figma có prototype.",
+    kind: "edu",
+    headline: "Luyện IELTS 6.5 trong 12 tuần",
+  },
+  {
+    slug: "showroom-xe",
+    name: "Showroom ô tô & xe máy 3D",
+    seller: "NewTech Studio",
+    category: "commerce",
+    stack: ["Next.js", "Three.js", "Tailwind"],
+    price: 890000,
+    shot: "/demos/thumbs/xe.png",
+    altShot: "/demos/thumbs/xe-2.png",
+    demo: "/demo/xe",
+    summary: "Mô hình 3D xoay 360°, đổi màu sơn trực tiếp, so sánh thông số, tính trả góp, đặt lái thử.",
+    isNew: true,
+    kind: "landing",
+    headline: "Chọn màu cho chiếc xe của bạn",
+  },
+  {
+    slug: "thoi-trang",
+    name: "Cửa hàng thời trang",
+    seller: "NewTech Studio",
+    category: "commerce",
+    stack: ["Next.js", "Tailwind"],
+    price: 690000,
+    shot: "/demos/thumbs/thoi-trang.png",
+    altShot: "/demos/thumbs/thoi-trang-2.png",
+    demo: "/demo/thoi-trang",
+    summary: "Lookbook, lọc theo size và màu, xem nhanh sản phẩm, giỏ hàng với VietQR, MoMo, ZaloPay.",
+    isNew: true,
+    kind: "shop",
+    headline: "Bộ sưu tập mới",
+  },
+  {
+    slug: "nha-hang",
+    name: "Website giới thiệu nhà hàng",
+    seller: "NewTech Studio",
+    category: "booking",
+    stack: ["Next.js", "Tailwind"],
+    price: 490000,
+    shot: "/demos/thumbs/nha-hang.png",
+    altShot: "/demos/thumbs/nha-hang-2.png",
+    demo: "/demo/nha-hang",
+    summary: "Thực đơn theo nhóm món, món đặc trưng, không gian, đánh giá và form đặt bàn.",
+    isNew: true,
+    kind: "booking",
+    headline: "Đặt bàn tối nay",
+  },
 ];
 
 export const formatVnd = (n: number) => new Intl.NumberFormat("vi-VN").format(n) + " ₫";

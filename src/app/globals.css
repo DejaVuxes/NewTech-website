@@ -235,3 +235,194 @@ html.lenis body {
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
 }
+
+/* ------------------------------------------------------------------
+   Template demos (/demo/*). Fonts per CLAUDE.md; each demo wrapper
+   (.demo-xe, .demo-thoi-trang, .demo-nha-hang) redefines the colour
+   tokens (--paper, --ink, --brand, --accent…) so bg-paper/text-ink etc.
+   re-skin automatically. Define dark values under [data-theme="dark"].
+------------------------------------------------------------------- */
+.demo-root {
+  --font-sans-src: var(--font-demo-body);
+  font-family: var(--font-demo-body), sans-serif;
+}
+.demo-root .display,
+.demo-root .font-display {
+  font-family: var(--font-demo-display), sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+/* Demo: /demo/nha-hang — "men lam Chu Đậu" (blue-and-white porcelain) + turmeric */
+.demo-nha-hang {
+  --paper: #f5f7fa;
+  --surface: #ffffff;
+  --ink: #13223d;
+  --ink-muted: #4e5b73;
+  --line: #d9e0ea;
+  --brand: #1d3f8a;
+  --brand-soft: #e2e9f6;
+  --chip: #e2e9f6;
+  --accent: #d9a21b;
+  --accent-ink: #13223d;
+  --focus: #1d3f8a;
+  --success: #1e7a4c;
+  --danger: #b3261e;
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--brand);
+  --primary-foreground: #ffffff;
+  --secondary: var(--brand-soft);
+  --secondary-foreground: var(--ink);
+  --muted: var(--chip);
+  --muted-foreground: var(--ink-muted);
+  --accent-foreground: var(--accent-ink);
+  --destructive: var(--danger);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--focus);
+  background: var(--paper);
+  color: var(--ink);
+}
+:root[data-theme="dark"] .demo-nha-hang {
+  --paper: #0d1526;
+  --surface: #142036;
+  --ink: #e6ecf5;
+  --ink-muted: #9fb0c8;
+  --line: #22324d;
+  --brand: #8fb0f0;
+  --brand-soft: #1a2944;
+  --chip: #1a2944;
+  --accent: #f0be3c;
+  --accent-ink: #13223d;
+  --focus: #8fb0f0;
+  --success: #5fc08c;
+  --danger: #f08a80;
+  --primary-foreground: #0d1526;
+}
+
+/* Template demo: thời trang (Atelier Mộc) — chalk + teal-ink + raspberry */
+.demo-thoi-trang {
+  --paper: #f7f6f4;
+  --surface: #ffffff;
+  --ink: #1c1a1f;
+  --ink-muted: #625d66;
+  --line: #e2dfe3;
+  --brand: #23413e;
+  --brand-soft: #dde8e6;
+  --chip: #eeecef;
+  --accent: #c7365f;
+  --accent-ink: #ffffff;
+  --focus: #23413e;
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--brand);
+  --primary-foreground: #ffffff;
+  --secondary: var(--brand-soft);
+  --secondary-foreground: var(--brand);
+  --muted: var(--chip);
+  --muted-foreground: var(--ink-muted);
+  --accent-foreground: var(--accent-ink);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--focus);
+  background: var(--paper);
+  color: var(--ink);
+}
+:root[data-theme="dark"] .demo-thoi-trang {
+  --paper: #141315;
+  --surface: #1d1b1f;
+  --ink: #eeecef;
+  --ink-muted: #a7a1ab;
+  --line: #2e2b31;
+  --brand: #8cc7bf;
+  --brand-soft: #1f2e2c;
+  --chip: #252328;
+  --accent: #f06a8f;
+  --accent-ink: #1c1a1f;
+  --focus: #8cc7bf;
+  --primary-foreground: #10201e;
+  --secondary-foreground: #cfe7e3;
+}
+
+/* ---- Demo: /demo/xe (graphite + signal yellow; tokens re-skin bg-paper/text-ink) ---- */
+.demo-xe {
+  --paper: #e9ecef;
+  --surface: #ffffff;
+  --ink: #14191f;
+  --ink-muted: #5a636e;
+  --line: #d3d8de;
+  --brand: #14191f;
+  --brand-soft: #dde2e7;
+  --chip: #dde2e7;
+  --accent: #e8b500;
+  --accent-ink: #14191f;
+  --focus: #14191f;
+  --success: #1e7a4c;
+  --danger: #b3261e;
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--brand);
+  --primary-foreground: var(--paper);
+  --secondary: var(--brand-soft);
+  --secondary-foreground: var(--ink);
+  --muted: var(--chip);
+  --muted-foreground: var(--ink-muted);
+  --accent-foreground: var(--accent-ink);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--focus);
+}
+:root[data-theme="dark"] .demo-xe {
+  --paper: #0e1216;
+  --surface: #161b21;
+  --ink: #e7eaed;
+  --ink-muted: #9aa3ad;
+  --line: #262e36;
+  --brand: #e7eaed;
+  --brand-soft: #1d242b;
+  --chip: #1d242b;
+  --accent: #f5c518;
+  --accent-ink: #14191f;
+  --focus: #e7eaed;
+  --success: #4fbf86;
+  --danger: #f2756b;
+}
+.demo-xe .xe-range {
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: color-mix(in oklab, currentColor 30%, transparent);
+  cursor: pointer;
+}
+.demo-xe .xe-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--accent);
+  border: 2px solid var(--brand);
+}
+.demo-xe .xe-range::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--accent);
+  border: 2px solid var(--brand);
+}
+.demo-xe .xe-range:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}

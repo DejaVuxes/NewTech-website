@@ -3,7 +3,11 @@
 import { useRef } from "react";
 import { formatVnd, templates } from "@/lib/data";
 import { gsap, MQ, ScrollTrigger, useGSAP } from "@/lib/gsap";
-import { BrowserFrame, TemplateShot } from "./template-shot";
+import { BrowserFrame } from "./template-shot";
+import { TemplateThumb } from "./template-thumb";
+
+// few templates → repeat them so the ribbon always fills wide screens
+const ribbon = [...templates, ...templates];
 
 /**
  * Curved strip of template previews drifting sideways (the reference's 3D project ribbon).
@@ -91,14 +95,18 @@ export function TemplateArc() {
         aria-label="Template nổi bật"
         role="region"
       >
-        {templates.map((t) => (
+        {ribbon.map((t, i) => (
           <a
-            key={t.slug}
-            href="#kho-template"
+            key={`${t.slug}-${i}`}
+            href={t.demo}
+            target="_blank"
+            rel={t.external ? "noopener noreferrer" : undefined}
+            tabIndex={i >= templates.length ? -1 : undefined}
+            aria-hidden={i >= templates.length ? true : undefined}
             className="arc-card group absolute left-0 top-4 block w-[264px] [transform-style:preserve-3d] sm:w-[336px] md:w-[384px]"
           >
-            <BrowserFrame url={`${t.slug}.newtech.vn`} dark={t.dark} className="border-band-line transition-colors duration-200 group-hover:border-lavender-2">
-              <TemplateShot kind={t.kind} headline={t.headline} dark={t.dark} />
+            <BrowserFrame url={`${t.slug}.newtech.vn`} className="border-band-line transition-colors duration-200 group-hover:border-lavender-2">
+              <TemplateThumb t={t} sizes="384px" />
             </BrowserFrame>
             <span className="mt-2 flex items-baseline justify-between gap-2 px-2 text-[14px]">
               <span className="truncate font-medium text-band-ink">{t.name}</span>

@@ -1,11 +1,11 @@
 "use client";
 
-import { ArrowRight, Eye, LayoutGrid, LayoutTemplate, Palette, Sparkles, Store } from "lucide-react";
+import { ArrowRight, ExternalLink, Eye, LayoutGrid, LayoutTemplate, Palette, Sparkles, Store } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button, Eyebrow } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatVnd, templates, type Template } from "@/lib/data";
-import { TemplateShot } from "./template-shot";
+import { TemplateThumb } from "./template-thumb";
 
 const services = [
   {
@@ -67,23 +67,25 @@ export function Services() {
 }
 
 function TemplateCard({ t }: { t: Template }) {
+  const demoProps = t.external ? { target: "_blank", rel: "noopener noreferrer" } : { target: "_blank" };
   return (
     <article className="group flex flex-col rounded-lg border border-line bg-surface p-4 transition-colors duration-200 hover:border-ink-muted">
-      <div className="relative overflow-hidden rounded-md border border-line">
-        <div className={t.dark ? "bg-ink text-paper" : "bg-surface text-ink"}>
-          <TemplateShot kind={t.kind} headline={t.headline} dark={t.dark} />
-        </div>
+      <a href={t.demo} {...demoProps} className="relative block overflow-hidden rounded-md border border-line" aria-label={`Xem demo ${t.name}`}>
+        <TemplateThumb t={t} />
         {/* hover: swap to the second screen of the template */}
-        <div className="absolute inset-0 bg-surface text-ink opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
-          <TemplateShot kind={t.altKind} headline={t.headline} />
-        </div>
+        {t.altShot && (
+          <div className="absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
+            <TemplateThumb t={t} alt />
+          </div>
+        )}
         {t.isNew && (
           <Badge className="absolute bottom-2 right-2 rounded-full border-0 px-2 text-[12px] font-semibold text-white [background:var(--grad-a)]">Mới</Badge>
         )}
-      </div>
+      </a>
       <h3 className="mt-4 font-semibold text-ink">{t.name}</h3>
       <p className="text-[14px] text-ink-muted">{t.seller}</p>
-      <ul className="mt-2 flex flex-wrap gap-2" aria-label="Công nghệ">
+      <p className="mt-2 flex-1 text-[14px] text-ink-muted">{t.summary}</p>
+      <ul className="mt-4 flex flex-wrap gap-2" aria-label="Công nghệ">
         {t.stack.map((s) => (
           <li key={s}>
             <Badge className="rounded-full border border-line bg-chip px-2 text-[12px] font-medium text-ink">{s}</Badge>
@@ -92,9 +94,9 @@ function TemplateCard({ t }: { t: Template }) {
       </ul>
       <div className="mt-4 flex items-center justify-between border-t border-line pt-4">
         <span className="display text-[24px] font-medium text-ink">{formatVnd(t.price)}</span>
-        <Button variant="outline" size="sm" render={<a href="#" />} nativeButton={false}>
-          <Eye />
-          Xem demo
+        <Button variant="outline" size="sm" render={<a href={t.demo} {...demoProps} />} nativeButton={false}>
+          {t.external ? <ExternalLink /> : <Eye />}
+          {t.demoLabel ?? "Xem demo"}
         </Button>
       </div>
     </article>
@@ -103,10 +105,9 @@ function TemplateCard({ t }: { t: Template }) {
 
 const filters = [
   { value: "all", label: "Tất cả" },
-  { value: "landing", label: "Landing page" },
-  { value: "dashboard", label: "Dashboard" },
-  { value: "pages", label: "Bộ trang" },
-  { value: "kit", label: "UI kit" },
+  { value: "commerce", label: "Bán hàng" },
+  { value: "booking", label: "Đặt vé & đặt bàn" },
+  { value: "edu", label: "Giáo dục" },
 ] as const;
 
 export function Gallery() {
@@ -116,17 +117,16 @@ export function Gallery() {
         <div>
           <Eyebrow icon={LayoutGrid}>Kho template</Eyebrow>
           <h2 className="display mt-6 text-[32px] font-medium text-ink sm:text-[48px]">
-            Template mới <span className="text-grad">lên kệ tuần này</span>
+            Website NewTech <span className="text-grad">thiết kế sẵn để bán</span>
           </h2>
         </div>
-        <Button variant="underline" render={<a href="#" />} nativeButton={false}>
-          Xem tất cả template
-          <ArrowRight />
-        </Button>
+        <p className="max-w-[400px] text-ink-muted">
+          Mỗi website có demo chạy thật. Logo và tên thương hiệu trong demo là nội dung mẫu: mua xong bạn thay bằng của mình là dùng được.
+        </p>
       </div>
 
       <Tabs defaultValue="all" className="mt-8 gap-8">
-        <TabsList className="h-auto flex-wrap justify-start gap-2 bg-transparent p-0">
+        <TabsList className="h-auto group-data-horizontal/tabs:h-auto flex-wrap justify-start gap-2 bg-transparent p-0">
           {filters.map((f) => (
             <TabsTrigger
               key={f.value}
