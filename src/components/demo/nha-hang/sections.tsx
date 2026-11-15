@@ -91,7 +91,7 @@ export function Story() {
           <dl className="mt-12 grid grid-cols-3 gap-4 border-t sm:gap-6 border-line pt-6">
             {[
               { k: "12 giờ", v: "ninh nước dùng mỗi ngày" },
-              { k: "5:30", v: "giờ đi chợ Long Biên" },
+              { k: "5:30", v: "giờ đi chợ Bình Tây" },
               { k: "3 trang trại", v: "rau sạch ở Đông Anh" },
             ].map((s) => (
               <div key={s.k}>
@@ -173,7 +173,7 @@ export function Location() {
             Tìm đường đến bếp
           </h2>
           <p className="mt-6 text-[20px] text-ink">{brand.address}</p>
-          <p className="mt-2 text-ink-muted">Gửi xe máy miễn phí trước cửa. Ô tô gửi tại bãi Văn Miếu, cách 200 m.</p>
+          <p className="mt-2 text-ink-muted">Gửi xe máy miễn phí trước cửa. Ô tô gửi tại bãi xe gần nhất, cách 200 m.</p>
           <table className="mt-8 w-full text-left">
             <caption className="sr-only">Giờ mở cửa</caption>
             <tbody>
@@ -223,7 +223,7 @@ function MapPlaceholder() {
         </g>
         <rect x="210" y="130" width="180" height="90" rx="6" fill="currentColor" fillOpacity="0.12" />
         <text x="300" y="182" textAnchor="middle" fontSize="14" fill="currentColor" fillOpacity="0.7">
-          Văn Miếu
+          ĐH Bách Khoa
         </text>
       </svg>
       <div className="absolute left-[52%] top-[62%] -translate-x-1/2 -translate-y-full">

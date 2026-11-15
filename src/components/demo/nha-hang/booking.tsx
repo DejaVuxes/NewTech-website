@@ -53,13 +53,13 @@ export function Booking() {
     const next: Errors = {};
     if (!time) next.time = "Chọn một khung giờ còn trống.";
     if (name.trim().length < 2) next.name = "Nhập tên người đặt bàn.";
-    if (!/^(0|\+84)\d{9}$/.test(phone.replace(/\s/g, ""))) next.phone = "Số điện thoại gồm 10 số, ví dụ 0901 234 567.";
+    if (!/^\+?\d{8,11}$/.test(phone.replace(/\s/g, ""))) next.phone = "Số điện thoại gồm 8–11 chữ số, ví dụ 12345678.";
     setErrors(next);
     if (Object.keys(next).length) return;
     setStatus("submitting");
     // Demo: giả lập gọi API. Thay bằng fetch tới hệ thống đặt bàn của bạn.
     window.setTimeout(() => {
-      setCode("NM" + Math.floor(1000 + Math.random() * 9000));
+      setCode(brand.short + Math.floor(1000 + Math.random() * 9000));
       setStatus("done");
     }, 900);
   }
@@ -251,7 +251,7 @@ export function Booking() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     autoComplete="tel"
-                    placeholder="0901 234 567"
+                    placeholder="12345678"
                     aria-invalid={!!errors.phone}
                     aria-describedby={errors.phone ? "err-phone" : undefined}
                   />

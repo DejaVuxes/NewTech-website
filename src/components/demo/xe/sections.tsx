@@ -52,7 +52,7 @@ export function Lineup({ onConfigure }: { onConfigure: (m: Model) => void }) {
       <div className="mx-auto max-w-[1280px] px-4 py-24 md:px-6">
         <SectionHead
           title="Dòng xe đang bán"
-          text="Mỗi mẫu đều có bản lái thử tại cả ba showroom. Chọn một mẫu để cấu hình màu, mâm và xem giá ngay."
+          text="Mỗi mẫu đều có xe lái thử tại showroom. Chọn một mẫu để cấu hình màu, mâm và xem giá ngay."
         />
         <TypeTabs className="mt-12">
           {(t) => (
@@ -262,7 +262,7 @@ export function TestDrive({ sel }: { sel: Selection }) {
     const date = String(f.get("date") ?? "");
     const next: Errors = {};
     if (name.length < 2) next.name = "Nhập họ và tên để showroom xưng hô đúng.";
-    if (!/^(0|\+84)\d{9}$/.test(phone)) next.phone = "Số điện thoại gồm 10 số, ví dụ 0912 345 678.";
+    if (!/^\+?\d{8,11}$/.test(phone)) next.phone = "Số điện thoại gồm 8–11 chữ số, ví dụ 12345678.";
     if (!date) next.date = "Chọn ngày bạn muốn đến lái thử.";
     else if (date < today) next.date = "Ngày lái thử phải từ hôm nay trở đi.";
     if (!f.get("consent")) next.consent = "Cần đồng ý để tư vấn viên gọi xác nhận lịch.";
@@ -332,7 +332,7 @@ export function TestDrive({ sel }: { sel: Selection }) {
               </label>
               <label className="block text-[14px] font-semibold text-ink">
                 Số điện thoại
-                <input name="phone" type="tel" autoComplete="tel" placeholder="0912 345 678" className={field} aria-invalid={!!errors.phone} aria-describedby="err-phone" />
+                <input name="phone" type="tel" autoComplete="tel" placeholder="12345678" className={field} aria-invalid={!!errors.phone} aria-describedby="err-phone" />
                 {err("phone")}
               </label>
               <label className="block text-[14px] font-semibold text-ink">

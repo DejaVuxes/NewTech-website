@@ -7,29 +7,12 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger, SheetClose } from "@/com
 import { nav } from "@/lib/data";
 import { ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
+import { NewtechMark } from "@/components/newtech-logo";
 
 export function Logo({ onBand = false }: { onBand?: boolean }) {
   return (
     <a href="#" className="flex items-center gap-2" aria-label="NewTech — trang chủ">
-      {/* mark: a leaf-to-bark ring around a pair of code brackets */}
-      <svg viewBox="0 0 32 32" className="size-8" aria-hidden>
-        <defs>
-          <linearGradient id="nt-ring" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#2e7d32" />
-            <stop offset=".5" stopColor="#66bb6a" />
-            <stop offset="1" stopColor="#8d6e63" />
-          </linearGradient>
-        </defs>
-        <circle cx="16" cy="16" r="13" fill="none" stroke="url(#nt-ring)" strokeWidth="2.5" />
-        <path
-          d="M13.5 11.5 9 16l4.5 4.5M18.5 11.5 23 16l-4.5 4.5"
-          fill="none"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={onBand ? "stroke-band-ink" : "stroke-ink"}
-        />
-      </svg>
+      <NewtechMark className={cn("size-8", onBand ? "text-band-ink" : "text-ink")} />
       <span className={cn("display text-[20px] font-semibold", onBand ? "text-band-ink" : "text-ink")}>NewTech</span>
     </a>
   );

@@ -18,7 +18,7 @@ export const models: Model[] = [
   {
     id: "s3",
     type: "car",
-    name: "Nova S3",
+    name: "Newtech S3",
     tagline: "Sedan hạng C, 5 chỗ, động cơ hybrid",
     price: 899_000_000,
     shape: "sedan",
@@ -33,7 +33,7 @@ export const models: Model[] = [
   {
     id: "x5",
     type: "car",
-    name: "Nova X5",
+    name: "Newtech X5",
     tagline: "SUV 7 chỗ, dẫn động 4 bánh",
     price: 1_290_000_000,
     shape: "suv",
@@ -48,7 +48,7 @@ export const models: Model[] = [
   {
     id: "gt",
     type: "car",
-    name: "Nova GT",
+    name: "Newtech GT",
     tagline: "Coupe thể thao 2+2, dẫn động cầu sau",
     price: 1_690_000_000,
     shape: "coupe",
@@ -63,7 +63,7 @@ export const models: Model[] = [
   {
     id: "u125",
     type: "bike",
-    name: "Nova Urban 125",
+    name: "Newtech Urban 125",
     tagline: "Xe tay ga đô thị, cốp 30 lít",
     price: 46_900_000,
     shape: "scooter",
@@ -78,7 +78,7 @@ export const models: Model[] = [
   {
     id: "st300",
     type: "bike",
-    name: "Nova Street 300",
+    name: "Newtech Street 300",
     tagline: "Naked bike 2 xi-lanh, ABS 2 kênh",
     price: 129_000_000,
     shape: "naked",
@@ -93,7 +93,7 @@ export const models: Model[] = [
   {
     id: "c650",
     type: "bike",
-    name: "Nova Café 650",
+    name: "Newtech Café 650",
     tagline: "Café racer cổ điển, tay lái thấp",
     price: 219_000_000,
     shape: "cafe",

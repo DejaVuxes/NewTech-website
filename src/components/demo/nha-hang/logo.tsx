@@ -1,20 +1,10 @@
 import { cn } from "@/lib/utils";
+import { NewtechLogo } from "@/components/newtech-logo";
 import { brand } from "./brand";
 
-/** Logo mẫu: monogram trong vành đĩa. Thay bằng logo thật của bạn. */
+/** Logo Newtech dùng chung (xem src/components/newtech-logo.tsx). */
 export function Logo({ className }: { className?: string }) {
-  return (
-    <span className={cn("inline-flex items-center gap-2", className)}>
-      <svg viewBox="0 0 40 40" className="size-8 shrink-0 text-brand sm:size-10" aria-hidden>
-        <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="20" cy="20" r="15" fill="none" stroke="currentColor" strokeWidth="0.75" strokeDasharray="2 2" />
-        <text x="20" y="25" textAnchor="middle" fontSize="13" fontWeight="800" fill="currentColor" style={{ fontFamily: "var(--font-demo-display)" }}>
-          {brand.short}
-        </text>
-      </svg>
-      <span className="display whitespace-nowrap text-[16px] font-extrabold text-ink sm:text-[20px]">{brand.name}</span>
-    </span>
-  );
+  return <NewtechLogo name={brand.name} className={className} />;
 }
 
 /**

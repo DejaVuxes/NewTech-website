@@ -26,7 +26,7 @@ export function Header() {
         Miễn phí giao hàng cho đơn từ {formatVnd(brand.freeShipFrom)}. Đổi size trong 30 ngày.
       </p>
       <header className="sticky top-10 z-40 border-b border-line bg-paper">
-        <div className="mx-auto flex h-16 max-w-[1280px] items-center gap-4 px-4 md:gap-6 md:px-6">
+        <div className="mx-auto flex h-16 max-w-[1280px] items-center gap-2 px-4 sm:gap-4 md:gap-6 md:px-6">
           <Sheet>
             <SheetTrigger
               className="-ml-2 grid size-10 place-items-center rounded-md hover:bg-chip lg:hidden"
