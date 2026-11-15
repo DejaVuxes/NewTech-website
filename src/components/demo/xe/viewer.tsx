@@ -38,9 +38,11 @@ export function Viewer({ model, paint, rim }: { model: Model; paint: Paint; rim:
   const [zoom, setZoom] = useState(0.45);
   const step = (d: number) => setZoom((z) => Math.min(1, Math.max(0, +(z + d).toFixed(2))));
   return (
+    <>
     <div className="relative h-[320px] sm:h-[400px] lg:h-[520px]">
       <WebglBoundary
-        fallback={<ViewerSkeleton shape={model.shape} label="Trình duyệt không hỗ trợ WebGL, đang hiển thị hình vẽ" />}
+        key={model.id}
+        fallback={<ViewerSkeleton shape={model.shape} label="Không tải được mô hình 3D. Vui lòng tải lại trang." />}
       >
         <div className="absolute inset-0 cursor-grab active:cursor-grabbing">
           <Scene model={model} paint={paint} rim={rim} zoom={zoom} />
@@ -71,5 +73,6 @@ export function Viewer({ model, paint, rim }: { model: Model; paint: Paint; rim:
         Kéo để xoay xe
       </p>
     </div>
+    </>
   );
 }

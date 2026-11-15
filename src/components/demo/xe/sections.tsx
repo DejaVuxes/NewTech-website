@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { CheckCircle2, Mail, MapPin, Phone, SlidersHorizontal } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
@@ -8,7 +9,6 @@ import { brand } from "./brand";
 import { BrandLogo } from "./brand-logo";
 import { totalPrice, type Selection } from "./configurator";
 import { formatVnd, models, typeLabel, type Model, type VehicleType } from "./data";
-import { Silhouette } from "./silhouette";
 
 const types = Object.keys(typeLabel) as VehicleType[];
 
@@ -61,8 +61,14 @@ export function Lineup({ onConfigure }: { onConfigure: (m: Model) => void }) {
                 .filter((m) => m.type === t)
                 .map((m) => (
                   <article key={m.id} className="flex flex-col rounded-lg border border-line bg-surface p-4 transition-colors duration-150 hover:border-ink-muted">
-                    <div className="rounded-md bg-paper px-8 py-6">
-                      <Silhouette shape={m.shape} />
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-md bg-white">
+                      <Image
+                        src={m.photo}
+                        alt={m.name}
+                        fill
+                        sizes="(min-width: 1024px) 390px, (min-width: 640px) 50vw, 100vw"
+                        className="object-contain p-4"
+                      />
                     </div>
                     <h3 className="display mt-6 text-[24px] font-extrabold text-ink">{m.name}</h3>
                     <p className="text-[14px] text-ink-muted">{m.tagline}</p>
@@ -416,6 +422,19 @@ export function XeFooter() {
           <li className="flex items-center gap-2 text-ink"><Mail className="size-4 stroke-[1.5]" aria-hidden />{brand.email}</li>
         </ul>
       </div>
+      <details className="mx-auto max-w-[1280px] px-4 pb-6 text-[12px] text-ink-muted md:px-6">
+        <summary className="w-fit cursor-pointer underline underline-offset-2">Nguồn mô hình 3D</summary>
+        <ul className="mt-3 space-y-2">
+          {models.filter((model) => model.asset).map((model) => (
+            <li key={model.id}>
+              <a href={model.asset!.source} target="_blank" rel="noreferrer" className="underline underline-offset-2">{model.name}</a>
+              {" — "}{model.asset!.creator}{" · "}
+              <a href={model.asset!.licenseUrl} target="_blank" rel="noreferrer" className="underline underline-offset-2">{model.asset!.license}</a>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-3">Các mô hình đã được tối ưu dung lượng và điều chỉnh màu hiển thị.</p>
+      </details>
       <p className="mx-auto max-w-[1280px] border-t border-line px-4 py-6 text-[12px] text-ink-muted md:px-6">
         © 2026 {brand.name}. Tên, logo và số liệu trong bản demo là nội dung mẫu.
       </p>

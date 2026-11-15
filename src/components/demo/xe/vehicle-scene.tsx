@@ -3,16 +3,17 @@
 /* eslint-disable react-hooks/immutability */
 
 /**
- * Procedural 3D showroom (no model files are downloaded).
+ * GLB vehicles for the Honda models, with procedural vehicles for the remaining demos.
  * Cars: extruded side profile (body) + extruded greenhouse (glass) + painted roof + wheels.
  * Bikes: torus wheels, tube frame, capsule tank/seat, scooter body panels.
  * Paint and rim colours lerp to their new value so a swatch click visibly "repaints" the vehicle.
  */
-import { useEffect, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { ContactShadows, Environment, Lightformer, OrbitControls } from "@react-three/drei";
+import { ContactShadows, Environment, Html, Lightformer, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import type { BikeShape, CarShape, Model, Paint, Rim } from "./data";
+import { ImportedVehicle } from "./imported-vehicle";
 
 type Mats = { paint: THREE.MeshPhysicalMaterial; rim: THREE.MeshStandardMaterial };
 
@@ -393,8 +394,8 @@ function Vehicle({ model, paint, rim, reduced }: { model: Model; paint: Paint; r
 
   const isBike = model.type === "bike";
   return (
-    <group ref={group} scale={isBike ? 2.1 : 1}>
-      {isBike ? <Bike shape={model.shape as BikeShape} mats={mats} /> : <Car shape={model.shape as CarShape} mats={mats} />}
+    <group ref={group} scale={isBike && !model.asset ? 2.1 : 1}>
+      {model.asset ? <ImportedVehicle model={model} paint={paint} rim={rim} /> : isBike ? <Bike shape={model.shape as BikeShape} mats={mats} /> : <Car shape={model.shape as CarShape} mats={mats} />}
     </group>
   );
 }
@@ -434,7 +435,9 @@ export default function VehicleScene({ model, paint, rim, zoom }: { model: Model
     >
       <ambientLight intensity={0.35} />
       <directionalLight position={[4, 8, 3]} intensity={1.6} castShadow shadow-mapSize={[1024, 1024]} />
-      <Vehicle key={model.id} model={model} paint={paint} rim={rim} reduced={reduced} />
+      <Suspense fallback={<Html center><p role="status" className="whitespace-nowrap rounded-lg bg-surface px-4 py-2 text-[14px] text-ink">Đang tải mô hình {model.name}…</p></Html>}>
+        <Vehicle key={model.id} model={model} paint={paint} rim={rim} reduced={reduced} />
+      </Suspense>
       {/* turntable rings on the floor */}
       {[2.8, 2.1].map((r, i) => (
         <mesh key={r} rotation-x={-Math.PI / 2} position-y={0.002}>

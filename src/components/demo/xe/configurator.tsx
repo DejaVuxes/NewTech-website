@@ -9,7 +9,7 @@ import { Viewer } from "./viewer";
 
 export type Selection = { model: Model; paint: Paint; rim: Rim };
 
-export const totalPrice = ({ model, paint, rim }: Selection) => model.price + paint[model.type] + rim[model.type];
+export const totalPrice = ({ model, paint, rim }: Selection) => model.price + paint[model.type] + (model.asset && !model.asset.rimMaterial ? 0 : rim[model.type]);
 
 function Extra({ value }: { value: number }) {
   return <span className="text-ink-muted">{value ? `+${formatVnd(value)}` : "Miễn phí"}</span>;
@@ -61,7 +61,7 @@ export function Configurator({
         {/* left: identity + specs */}
         <div className="flex flex-col lg:col-span-3 lg:pt-16">
           <p className="hero-in text-[14px] font-semibold text-ink-muted">{list.length} mẫu {typeLabel[model.type].toLowerCase()} đang bán</p>
-          <h1 className={cn("model-name display mt-2 text-[48px] font-extrabold text-ink", model.name.length <= 9 && "md:text-[64px]")}>{model.name}</h1>
+          <h1 className={cn("model-name display mt-2 break-words text-[48px] font-extrabold text-ink", model.name.length <= 9 && "md:text-[64px]", model.name.length > 16 && "text-[36px]")}>{model.name}</h1>
           <p className="hero-in display mt-2 text-[24px] font-extralight text-ink">{model.tagline}</p>
           <dl className="hero-in mt-8 hidden border-t border-line lg:block">
             {model.specs.slice(0, 4).map((s) => (
@@ -145,7 +145,7 @@ export function Configurator({
             <p className="mt-2 text-[14px]"><Extra value={paint[model.type]} /></p>
           </fieldset>
 
-          <fieldset className="hero-in">
+          {(!model.asset || model.asset.rimMaterial) ? <fieldset className="hero-in">
             <legend className="text-[14px] font-semibold text-ink">{model.type === "car" ? "Mâm xe" : "Vành và khung"}</legend>
             <div className="mt-4 flex flex-col gap-2">
               {rims.map((r) => (
@@ -163,10 +163,13 @@ export function Configurator({
                 </label>
               ))}
             </div>
-          </fieldset>
+          </fieldset> : <div className="hero-in">
+            <p className="text-[14px] font-semibold text-ink">Mâm xe</p>
+            <p className="mt-2 text-[14px] text-ink-muted">Giữ thiết kế nguyên bản của xe</p>
+          </div>}
 
           <div className="hero-in border-t border-line pt-6">
-            <p className="text-[14px] text-ink-muted">Giá niêm yết tạm tính</p>
+            <p className="text-[14px] text-ink-muted">{model.asset ? "Giá tham khảo trong bản demo" : "Giá niêm yết tạm tính"}</p>
             <p className="display mt-1 text-[32px] font-extrabold text-ink" aria-live="polite">{formatVnd(total)}</p>
             <p className="text-[14px] text-ink-muted">Đã gồm VAT, chưa gồm lệ phí trước bạ</p>
             <a

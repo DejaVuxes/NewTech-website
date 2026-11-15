@@ -4,10 +4,10 @@
  * "Newtech Car" là tên mẫu, không phải thương hiệu thật.
  */
 export const brand = {
-  name: "Newtech Car",
-  short: "Newtech",
-  hotline: "12345678",
-  email: "lienhe@newtechcar.vn",
+  name: "HONDA THỊNH PHÁT",
+  short: "HONDA TP",
+  hotline: "+084 28 7300 8888",
+  email: "hondathinhphat@gmail.com",
   showrooms: [
     { id: "hcm", city: "TP. Hồ Chí Minh", address: "268 Lý Thường Kiệt, Phường Diên Hồng" },
   ],
