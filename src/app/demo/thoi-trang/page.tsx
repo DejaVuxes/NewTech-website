@@ -3,8 +3,8 @@ import { brand } from "@/components/demo/thoi-trang/brand";
 import { FashionStore } from "@/components/demo/thoi-trang/shop-page";
 
 export const metadata: Metadata = {
-  title: `${brand.name} — Thời trang Thu Đông 2026 | Demo template NewTech`,
-  description: "Template cửa hàng thời trang: lookbook, bộ lọc sản phẩm, xem nhanh, giỏ hàng, thanh toán VietQR, MoMo, ZaloPay.",
+  title: `${brand.name} — Dệt chất riêng, mặc tinh thần Sài Gòn`,
+  description: `${brand.name}: thời trang đương đại mang tinh thần Sài Gòn. Khám phá những thiết kế tối giản, chất liệu chọn lọc và phong cách riêng cho mỗi ngày.`,
 };
 
 export default function Page() {

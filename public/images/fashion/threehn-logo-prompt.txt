@@ -1,0 +1,5 @@
+Tool mode: built-in image_gen; transparent background enabled.
+Asset: threehn-monogram.png
+
+Final prompt:
+Create one finished standalone logo image for a contemporary independent fashion label named ThreeHN Saigon Artelier. Use case: logo-design. The image must be a square, genuinely transparent PNG with clean alpha, containing only a beautifully crafted custom 3HN monogram, centered and occupying about 80% of the canvas. Interlock the numeral 3 with the capital letters H and N into a distinctive sculptural editorial fashion emblem, legible on close inspection. Refined modern serif letterforms, strong graceful curves, precise negative space, subtle tailoring-inspired joining of strokes, balanced optical weight, restrained luxury inspired by a Saigon fashion atelier. Single flat deep ink teal #23413E. Very crisp edges, professional brand identity quality, works as a small website mark and garment label. Text within the image only: '3HN'. Do not add the full brand name, tagline, border, decorative badge, clothing illustration, shadow, texture, embossing, mockup, or background. Deliver a single logo mark, not a sheet of options.

@@ -11,9 +11,9 @@ export function FashionStore() {
   return (
     <StoreProvider>
       <div className="demo-thoi-trang min-h-dvh">
-        <Header />
         <main>
           <Hero />
+          <Header />
           <Shop />
           <Lookbook />
           <Promises />
