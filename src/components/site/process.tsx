@@ -13,7 +13,7 @@ const steps = [
   { title: "Bàn giao", text: "Mã nguồn, file Figma, tài liệu, khoá giấy phép." },
 ];
 
-const tree = `sen-saas/
+const tree = `frontend-saas/
 ├─ app/
 │  ├─ layout.tsx
 │  └─ page.tsx
@@ -22,7 +22,7 @@ const tree = `sen-saas/
 │  ├─ pricing.tsx
 │  └─ ui/          # shadcn/ui
 ├─ styles/tokens.css
-├─ figma/sen-saas.fig
+├─ figma/frontend-saas.fig
 └─ LICENSE-thuong-mai.txt`;
 
 export function Process() {
@@ -80,7 +80,7 @@ export function Process() {
               ))}
             </ul>
           </div>
-          <BrowserFrame url="sen-saas.newtech.vn" className="self-center border-band-line">
+          <BrowserFrame url="frontend-saas.newtech.vn" className="self-center border-band-line">
             <TemplateShot kind="saas" headline="Quản lý ca làm cho chuỗi cửa hàng" />
           </BrowserFrame>
         </div>

@@ -80,10 +80,10 @@ export function Lookbook() {
 }
 
 const promises = [
-  { icon: Truck, title: "Giao trong 24 giờ", text: `Nội thành Hà Nội và TP. HCM. Miễn phí từ ${formatVnd(brand.freeShipFrom)}.` },
+  { icon: Truck, title: "Giao trong 24 giờ", text: `Miễn phí từ ${formatVnd(brand.freeShipFrom)}.` },
   { icon: RotateCcw, title: "Đổi size 30 ngày", text: "Không cần lý do, chúng tôi tới tận nhà lấy hàng." },
   { icon: Receipt, title: "Hoá đơn VAT", text: "Xuất hoá đơn điện tử cho công ty ngay khi đặt hàng." },
-  { icon: Leaf, title: "Vải có nguồn gốc", text: "Linen Đà Lạt, lụa Bảo Lộc, len merino có chứng nhận." },
+  { icon: Leaf, title: "Vải có nguồn gốc", text: "Linen xịn." },
 ];
 
 export function Promises() {

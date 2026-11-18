@@ -333,7 +333,7 @@ export function TestDrive({ sel }: { sel: Selection }) {
             <form noValidate onSubmit={submit} className="grid gap-6 sm:grid-cols-2">
               <label className="block text-[14px] font-semibold text-ink">
                 Họ và tên
-                <input name="name" autoComplete="name" placeholder="Nguyễn Minh Anh" className={field} aria-invalid={!!errors.name} aria-describedby="err-name" />
+                <input name="name" autoComplete="name" placeholder="Nguyễn Văn A" className={field} aria-invalid={!!errors.name} aria-describedby="err-name" />
                 {err("name")}
               </label>
               <label className="block text-[14px] font-semibold text-ink">

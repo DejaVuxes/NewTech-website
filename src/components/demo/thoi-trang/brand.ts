@@ -4,10 +4,10 @@ export const brand = {
   short: "ThreeHN",
   studio: "Saigon Artelier",
   tagline: "Dệt chất riêng, mặc tinh thần Sài Gòn",
-  hotline: "028 0000 0368",
+  hotline: "028 1234 5678",
   email: "hello@threehnsaigon.vn",
   freeShipFrom: 799000,
   stores: [
-    { city: "TP. Hồ Chí Minh", address: "18A Nguyễn Văn Thủ, Phường Tân Định" },
+    { city: "TP. Hồ Chí Minh", address: "268 Lý Thường Kiệt, Phường Diêm Hồng, T.P Hồ Chí Minh" },
   ],
 };

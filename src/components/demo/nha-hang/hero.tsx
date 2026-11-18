@@ -34,7 +34,7 @@ export function Hero() {
             Bữa cơm nhà, dọn trên đĩa men lam.
           </h1>
           <p className="nm-hero-line mt-6 max-w-[34rem] text-[20px] font-normal leading-[1.6] text-ink-muted">
-            Phở ninh xương mười hai tiếng, cá nướng than hoa, lẩu riêu cua đồng. Nguyên liệu đi chợ mỗi sáng, nấu theo công thức của bà.
+            Phở ninh xương mười hai tiếng, cá nướng than hoa, lẩu riêu cua đồng. Nguyên liệu đi chợ mỗi sáng.
           </p>
           <div className="nm-hero-line mt-8 flex flex-wrap gap-4">
             <a

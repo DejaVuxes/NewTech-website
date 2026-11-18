@@ -75,24 +75,23 @@ export function Story() {
         </div>
         <div className="flex flex-col justify-center lg:col-span-6 lg:col-start-7">
           <h2 id="cau-chuyen-title" className="display text-[32px] font-extrabold text-ink sm:text-[48px]">
-            Công thức của bà, nấu bằng tay của cháu.
+            Sinh Viên Bách Khoa
           </h2>
           <p className="mt-6 text-ink-muted">
-            Bếp trưởng Trần Mây lớn lên trong gian bếp của bà ở phố Hàng Bạc. Năm {brand.since}, chị mở {brand.name} với {brand.seats} chỗ
-            ngồi và một nguyên tắc: món nào bà chưa nấu thì không đưa vào thực đơn.
+            Nguyên Phạm lớn lên ở Hải Phòng. Năm 2024, anh đậu Bách Khoa Hồ Chí Minh với một nguyên tắc: Quyết tâm không học lại.
           </p>
           <blockquote className="mt-8 border-l-2 border-brand pl-6">
             <Quote className="size-6 stroke-[1.5] text-brand" aria-hidden />
             <p className="display mt-2 text-[24px] font-extralight leading-[1.3] text-ink">
-              Nước dùng ngon không có bí quyết. Chỉ là dậy sớm hơn và chờ lâu hơn.
+              Tôi là sinh viên Bách Khoa
             </p>
-            <footer className="mt-4 text-[14px] text-ink-muted">Trần Mây, bếp trưởng</footer>
+            <footer className="mt-4 text-[14px] text-ink-muted">Nguyên Phạm, sinh viên HCMUT</footer>
           </blockquote>
           <dl className="mt-12 grid grid-cols-3 gap-4 border-t sm:gap-6 border-line pt-6">
             {[
               { k: "12 giờ", v: "ninh nước dùng mỗi ngày" },
-              { k: "5:30", v: "giờ đi chợ Bình Tây" },
-              { k: "3 trang trại", v: "rau sạch ở Đông Anh" },
+              { k: "5:30", v: "giờ đi chợ" },
+              { k: "trang trại", v: "rau sạch" },
             ].map((s) => (
               <div key={s.k}>
                 <dt className="display text-[20px] font-extrabold text-ink sm:text-[24px]">{s.k}</dt>
@@ -152,10 +151,8 @@ export function Reviews() {
         </div>
         <ul className="mt-12 grid gap-12 md:grid-cols-3 md:gap-6">
           {reviews.map((r) => (
-            <li key={r.name} className="border-t border-current/25 pt-6">
+            <li key={r.quote} className="border-t border-current/25 pt-6">
               <p className="text-[20px] leading-[1.5]">&ldquo;{r.quote}&rdquo;</p>
-              <p className="mt-6 font-semibold">{r.name}</p>
-              <p className="text-[14px] opacity-80">{r.source}</p>
             </li>
           ))}
         </ul>
