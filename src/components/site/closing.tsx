@@ -84,8 +84,8 @@ const tiers = [
   {
     value: "ca-nhan",
     label: "Cá nhân",
-    price: "Từ 290.000 ₫",
-    note: "mỗi template, đúng giá niêm yết, trả một lần",
+    price: "290.000 – 490.000 ₫",
+    note: "mỗi template, tuỳ mẫu, trả một lần",
     yes: ["Dùng cho 1 dự án cá nhân hoặc học tập", "Mã nguồn và file Figma", "Cập nhật miễn phí 12 tháng"],
     no: ["Dự án cho khách hàng hoặc sản phẩm thương mại"],
   },
@@ -139,7 +139,7 @@ export function Pricing() {
           <TabsContent key={t.value} value={t.value}>
             <div className="rounded-lg rounded-tl-none border border-line bg-surface">
               <div className="p-6 md:p-8">
-                <p className="display text-[48px] font-medium text-ink md:text-[64px]">{t.price}</p>
+                <p className={cn("display font-medium text-ink md:text-[64px]", t.value === "ca-nhan" ? "text-[28px] sm:text-[48px]" : "text-[48px]")}>{t.price}</p>
                 <p className="text-ink-muted">{t.note}</p>
                 <ul className="mt-8 space-y-4">
                   {t.yes.map((x) => (
