@@ -1,10 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { Check, Workflow } from "lucide-react";
+import { Workflow } from "lucide-react";
 import { Eyebrow } from "@/components/ui/button";
 import { gsap, MQ, useGSAP } from "@/lib/gsap";
-import { BrowserFrame, TemplateShot } from "./template-shot";
 
 const steps = [
   { title: "Nhận yêu cầu", text: "Đội dev gửi trang cần làm, logo, màu và danh sách màn hình." },
@@ -12,18 +11,6 @@ const steps = [
   { title: "Người kiểm duyệt", text: "Designer và dev rà bố cục, chữ tiếng Việt, responsive, chất lượng code." },
   { title: "Bàn giao", text: "Mã nguồn, file Figma, tài liệu, khoá giấy phép." },
 ];
-
-const tree = `sen-saas/
-├─ app/
-│  ├─ layout.tsx
-│  └─ page.tsx
-├─ components/
-│  ├─ hero.tsx
-│  ├─ pricing.tsx
-│  └─ ui/          # shadcn/ui
-├─ styles/tokens.css
-├─ figma/sen-saas.fig
-└─ LICENSE-thuong-mai.txt`;
 
 export function Process() {
   const scope = useRef<HTMLElement>(null);
@@ -57,7 +44,7 @@ export function Process() {
 
       <div className="process-panel relative mt-12 overflow-hidden rounded-lg bg-band text-band-ink md:mt-16">
         <div className="band-glow pointer-events-none absolute inset-0" aria-hidden />
-        <ol className="relative grid border-b border-band-line sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="relative grid sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <li key={s.title} className="border-band-line p-6 not-last:border-b sm:[&:nth-child(odd)]:border-r lg:border-b-0 lg:not-last:border-r">
               <span className="inline-flex rounded-full bg-band-badge px-4 py-1 text-[14px] text-band-ink">Bước {i + 1}</span>
@@ -66,24 +53,6 @@ export function Process() {
             </li>
           ))}
         </ol>
-        <div className="relative grid gap-6 p-6 md:p-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
-          <div>
-            <p className="text-[14px] font-semibold">Bạn nhận được gì</p>
-            <pre className="mt-4 overflow-x-auto rounded-md border border-band-line bg-band-card p-4 font-mono text-[14px] leading-6 text-band-ink" data-lenis-prevent>
-              {tree}
-            </pre>
-            <ul className="mt-4 space-y-2 text-[14px] text-band-muted">
-              {["Chạy đúng như bản demo", "Giấy phép ghi rõ được dùng cho bao nhiêu dự án"].map((x) => (
-                <li key={x} className="flex gap-2">
-                  <Check className="mt-1 size-4 shrink-0 stroke-[1.5] text-band-ink" /> {x}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <BrowserFrame url="sen-saas.newtech.vn" className="self-center border-band-line">
-            <TemplateShot kind="saas" headline="Quản lý ca làm cho chuỗi cửa hàng" />
-          </BrowserFrame>
-        </div>
       </div>
     </section>
   );
